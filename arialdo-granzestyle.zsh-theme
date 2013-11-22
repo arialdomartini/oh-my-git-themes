@@ -35,7 +35,7 @@
 : ${yellow='\033[0;33m'}
 : ${violet='\033[0;35m'}
 : ${branch_color='\033[0;34m'}
-: ${reset='\033[0m'}
+: ${reset=''}
 
 
 PROMPT='$(build_prompt)%{$fg_bold[green]%}%~
