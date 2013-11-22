@@ -27,16 +27,22 @@
 : ${use_color_off:=false}
 
 
-# Colors
-: ${on='\033[0;37m'}
-: ${off='\033[1;30m'}
-: ${red='\033[0;31m'}
-: ${green='\033[0;32m'}
-: ${yellow='\033[0;33m'}
-: ${violet='\033[0;35m'}
-: ${branch_color='\033[0;34m'}
-: ${reset=''}
+#load colors
+autoload colors && colors
+for COLOR in RED GREEN YELLOW BLUE MAGENTA CYAN BLACK WHITE; do
+    eval $COLOR='%{$fg_no_bold[${(L)COLOR}]%}'  #wrap colours between %{ %} to avoid weird gaps in autocomplete
+    eval BOLD_$COLOR='%{$fg_bold[${(L)COLOR}]%}'
+done
+eval RESET='%{$reset_color%}'
 
+on=$WHITE
+off=$WHITE
+red=$RED
+green=$GREEN
+yellow=$YELLOW
+violet=$CYAN
+branch_color=$BLUE
+reset=$RESET
 
 PROMPT='$(build_prompt)%{$fg_bold[green]%}
 %~%{$fg_bold[white]%} ∙ '
