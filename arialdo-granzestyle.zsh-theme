@@ -16,7 +16,7 @@
 : ${omg_rebase_tracking_branch_symbol:='↶'}
 : ${omg_merge_tracking_branch_symbol:='ᄉ'}
 : ${omg_should_push_symbol:='↑'}
-: ${has_stashes_symbol:='★'}
+: ${omg_has_stashes_symbol:='★'}
 
 # Flags
 : ${display_has_upstream:=false}
