@@ -1,7 +1,7 @@
 # Symbols
 : ${omg_is_a_git_repo_symbol:='❤'}
 : ${omg_has_untracked_files_symbol:='∿'}
-: ${has_adds_symbol:='+'}
+: ${omg_has_adds_symbol:='+'}
 : ${has_deletions_symbol:='-'}
 : ${has_deletions_cached_symbol:='✖'}
 : ${has_modifications_symbol:='✎'}
