@@ -7,7 +7,7 @@
 : ${omg_has_modifications_symbol:='✎'}
 : ${omg_has_cached_modifications_symbol:='☲'}
 : ${omg_ready_to_commit_symbol:='→'}
-: ${is_on_a_tag_symbol:='⌫'}
+: ${omg_is_on_a_tag_symbol:='⌫'}
 : ${needs_to_merge_symbol:='ᄉ'}
 : ${has_upstream_symbol:='⇅'}
 : ${detached_symbol:='⚯ '}
