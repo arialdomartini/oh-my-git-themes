@@ -14,7 +14,7 @@
 : ${omg_can_fast_forward_symbol:='»'}
 : ${omg_has_diverged_symbol:='Ⴤ'}
 : ${omg_rebase_tracking_branch_symbol:='↶'}
-: ${merge_tracking_branch_symbol:='ᄉ'}
+: ${omg_merge_tracking_branch_symbol:='ᄉ'}
 : ${should_push_symbol:='↑'}
 : ${has_stashes_symbol:='★'}
 
