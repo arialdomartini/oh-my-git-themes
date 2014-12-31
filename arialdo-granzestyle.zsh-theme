@@ -4,7 +4,7 @@
 : ${omg_has_adds_symbol:='+'}
 : ${omg_has_deletions_symbol:='-'}
 : ${omg_has_cached_deletions_symbol:='✖'}
-: ${has_modifications_symbol:='✎'}
+: ${omg_has_modifications_symbol:='✎'}
 : ${has_modifications_cached_symbol:='☲'}
 : ${ready_to_commit_symbol:='→'}
 : ${is_on_a_tag_symbol:='⌫'}
