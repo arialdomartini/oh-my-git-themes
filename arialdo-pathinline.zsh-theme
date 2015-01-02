@@ -36,7 +36,7 @@ done
 eval RESET='%{$reset_color%}'
 
 omg_default_color_on=$WHITE
-omg_off=$WHITE
+omg_default_color_off=$WHITE
 red=$RED
 green=$GREEN
 yellow=$YELLOW
