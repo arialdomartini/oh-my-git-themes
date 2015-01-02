@@ -24,7 +24,7 @@
 : ${omg_display_tag_name:=true}
 : ${omg_two_lines:=false}
 : ${omg_finally:=''}
-: ${use_color_off:=false}
+: ${omg_use_color_off:=false}
 
 
 #load colors
