@@ -20,8 +20,8 @@
 
 # Flags
 : ${omg_display_has_upstream:=false}
-: ${display_tag:=false}
-: ${display_tag_name:=true}
+: ${omg_display_tag:=false}
+: ${omg_display_tag_name:=true}
 : ${two_lines:=false}
 : ${finally:=''}
 : ${use_color_off:=false}
