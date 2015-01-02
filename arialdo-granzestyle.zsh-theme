@@ -35,7 +35,7 @@ for COLOR in RED GREEN YELLOW BLUE MAGENTA CYAN BLACK WHITE; do
 done
 eval RESET='%{$reset_color%}'
 
-omg_on=$WHITE
+omg_default_color_on=$WHITE
 omg_off=$WHITE
 red=$RED
 green=$GREEN
