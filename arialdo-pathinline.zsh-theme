@@ -41,7 +41,6 @@ red=$RED
 green=$GREEN
 yellow=$YELLOW
 violet=$CYAN
-branch_color=$BLUE
 reset=$RESET
 
 PROMPT='$(build_prompt)%{$fg_bold[green]%}
