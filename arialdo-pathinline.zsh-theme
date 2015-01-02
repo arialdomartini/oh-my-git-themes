@@ -23,7 +23,7 @@
 : ${omg_display_tag:=false}
 : ${omg_display_tag_name:=true}
 : ${omg_two_lines:=false}
-: ${finally:=''}
+: ${omg_finally:=''}
 : ${use_color_off:=false}
 
 
