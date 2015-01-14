@@ -1,3 +1,5 @@
+: ${omg_ungit_prompt:=$PS1}
+
 : ${omg_is_a_git_repo_symbol:=''}
 : ${omg_has_untracked_files_symbol:=''}        #                ?    
 : ${omg_has_adds_symbol:=''}
@@ -40,8 +42,7 @@ reset="%{\e[0m%}"
 #colors
 autoload -U colors && colors
 
-PROMPT='$(build_prompt) %k%f
-${CC_CURRENT_PATH}: '
+PROMPT='$(build_prompt)'
 RPROMPT='%{$reset_color%}%T %{$fg_bold[white]%} %n@%m%{$reset_color%}'
 
 function enrich_append {
@@ -79,6 +80,7 @@ function custom_build_prompt {
     local has_stashes=${23}
 
     local prompt=""
+    local original_prompt=$PS1
 
     if [[ $is_a_git_repo == true ]]; then
         # on filesystem
@@ -138,8 +140,11 @@ function custom_build_prompt {
             fi
         fi
         prompt+=$(enrich_append ${is_on_a_tag} ${omg_is_on_a_tag_symbol} "%K{red}%F{yellow}")
+        prompt+="%F{red}%K{black}%k%f
+${CC_CURRENT_PATH}: "
+    else
+        prompt="${omg_ungit_prompt}"
     fi
  
-    prompt="${prompt}%F{red}%K{black}%k%f"
     echo "${prompt}"
 }
