@@ -25,12 +25,7 @@
 # Flags
 omg_default_color_on=$WHITE
 omg_default_color_off=$WHITE
-red=$RED
-green=$GREEN
-yellow=$YELLOW
-violet=$CYAN
-RESET='%{$reset_color%}'
-reset=$RESET
+reset='%{$reset_color%}'
 
 CC_CURRENT_PATH="~"
 CC_CURRENT_USERNAME="%n"
