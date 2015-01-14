@@ -21,9 +21,6 @@
 
 
 # Flags
-: ${omg_finally:=''}
-: ${omg_use_color_off:=false}
-
 omg_default_color_on=$WHITE
 omg_default_color_off=$WHITE
 red=$RED
@@ -51,7 +48,7 @@ function enrich_append {
     local flag=$1
     local symbol=$2
     local color=${3:-$omg_default_color_on}
-    if [[ $flag == false && $omg_use_color_off == false ]]; then symbol=' '; fi
+    if [[ $flag == false ]]; then symbol=' '; fi
 
     echo -n "${color}${symbol}  "
 }
