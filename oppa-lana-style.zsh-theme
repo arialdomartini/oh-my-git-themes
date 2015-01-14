@@ -23,8 +23,7 @@
 
 
 # Flags
-omg_default_color_on=$WHITE
-omg_default_color_off=$WHITE
+omg_default_color_on="%K{white}%F{black}"
 reset='%{$reset_color%}'
 
 CC_CURRENT_PATH="~"
