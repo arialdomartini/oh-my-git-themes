@@ -67,6 +67,7 @@ function custom_build_prompt {
     local yellow_on_white="%K{white}%F{yellow}"
     local red_on_white="%K{white}%F{red}"
     local black_on_red="%K{red}%F{black}"
+    local white_on_red="%K{red}%F{white}"
 
     # Flags
     local omg_default_color_on="${black_on_white}"
@@ -102,7 +103,7 @@ function custom_build_prompt {
         prompt="${prompt} %F{white}%K{red} ${black_on_red}"
         if [[ $detached == true ]]; then
             prompt+=$(enrich_append $detached $omg_detached_symbol "${black_on_red}")
-            prompt+=$(enrich_append $detached "(${current_commit_hash:0:7})" "%K{red}%F{white}")
+            prompt+=$(enrich_append $detached "(${current_commit_hash:0:7})" "${white_on_red}")
         else            
             if [[ $has_upstream == false ]]; then
                 prompt+=$(enrich_append true "-- ${omg_not_tracked_branch_symbol}  --  (${current_branch})" "${black_on_red}")
@@ -114,7 +115,7 @@ function custom_build_prompt {
                 fi
 
                 if [[ $has_diverged == true ]]; then
-                    prompt+=$(enrich_append true "-${commits_behind} ${omg_has_diverged_symbol} +${commits_ahead}" "%K{red}%F{white}")
+                    prompt+=$(enrich_append true "-${commits_behind} ${omg_has_diverged_symbol} +${commits_ahead}" "${white_on_red}")
                 else
                     if [[ $commits_behind -gt 0 ]]; then
                         prompt+=$(enrich_append true "-${commits_behind} ${omg_can_fast_forward_symbol} --" "${black_on_red}")
