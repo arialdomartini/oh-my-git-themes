@@ -131,7 +131,7 @@ function custom_build_prompt {
         fi
         prompt+=$(enrich_append ${is_on_a_tag} ${omg_is_on_a_tag_symbol} "%K{red}%F{yellow}")
         prompt+="%F{red}%K{black}%k%f
-${current_path}: "
+${current_path} • "
     else
         prompt="${omg_ungit_prompt}"
     fi
