@@ -101,7 +101,7 @@ function custom_build_prompt {
 
         # where
 
-        prompt="${prompt} %F{white}%K{red} ${black_on_red}"
+        prompt="${prompt} ${white_on_red} ${black_on_red}"
         if [[ $detached == true ]]; then
             prompt+=$(enrich_append $detached $omg_detached_symbol "${white_on_red}")
             prompt+=$(enrich_append $detached "(${current_commit_hash:0:7})" "${white_on_red}")
