@@ -67,14 +67,11 @@ function custom_build_prompt {
 
     # Flags
     local omg_default_color_on="${black_on_white}"
-    local reset='%{$reset_color%}'
 
     local CC_CURRENT_PATH="~"
     local CC_CURRENT_USERNAME="%n"
     local CC_CURRENT_HOSTNAME="%m"
     local CC_TIME_AND_DATE="%D{%H:%M:%S} $CC_SYMBOL_CALENDAR %D{%Y-%m-%d}"
-
-    local reset="%{\e[0m%}"
 
     if [[ $is_a_git_repo == true ]]; then
         # on filesystem
