@@ -70,7 +70,7 @@ function custom_build_prompt {
     # Flags
     local omg_default_color_on="${black_on_white}"
 
-    local CC_CURRENT_PATH="~"
+    local current_path="~"
 
     if [[ $is_a_git_repo == true ]]; then
         # on filesystem
@@ -131,7 +131,7 @@ function custom_build_prompt {
         fi
         prompt+=$(enrich_append ${is_on_a_tag} ${omg_is_on_a_tag_symbol} "%K{red}%F{yellow}")
         prompt+="%F{red}%K{black}%k%f
-${CC_CURRENT_PATH}: "
+${current_path}: "
     else
         prompt="${omg_ungit_prompt}"
     fi
