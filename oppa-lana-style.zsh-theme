@@ -14,7 +14,7 @@
 : ${omg_can_fast_forward_symbol:=''}
 : ${omg_has_diverged_symbol:=''}               #   
 : ${omg_not_tracked_branch_symbol:=''}
-: ${omg_should_sync_symbol:=''}                #     
+: ${omg_should_sync_symbol:=''}                #     
 : ${omg_rebase_tracking_branch_symbol:=''}     #   
 : ${omg_merge_tracking_branch_symbol:=''}      #  
 : ${omg_should_push_symbol:=''}                #    
