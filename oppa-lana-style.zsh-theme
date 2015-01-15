@@ -74,7 +74,7 @@ function custom_build_prompt {
     # Flags
     local omg_default_color_on="${black_on_white}"
 
-    local current_path="~"
+    local current_path="%~"
 
     if [[ $is_a_git_repo == true ]]; then
         # on filesystem
