@@ -65,6 +65,7 @@ function custom_build_prompt {
 
     local black_on_white="%K{white}%F{black}"
     local yellow_on_white="%K{white}%F{yellow}"
+    local red_on_white="%K{white}%F{red}"
 
     # Flags
     local omg_default_color_on="${black_on_white}"
@@ -80,9 +81,9 @@ function custom_build_prompt {
         prompt+=$(enrich_append $is_a_git_repo $omg_is_a_git_repo_symbol "${black_on_white}")
         prompt+=$(enrich_append $has_stashes $omg_has_stashes_symbol "${yellow_on_white}")
 
-        prompt+=$(enrich_append $has_untracked_files $omg_has_untracked_files_symbol "%K{white}%F{red}")
-        prompt+=$(enrich_append $has_modifications $omg_has_modifications_symbol "%K{white}%F{red}")
-        prompt+=$(enrich_append $has_deletions $omg_has_deletions_symbol "%K{white}%F{red}")
+        prompt+=$(enrich_append $has_untracked_files $omg_has_untracked_files_symbol "${red_on_white}")
+        prompt+=$(enrich_append $has_modifications $omg_has_modifications_symbol "${red_on_white}")
+        prompt+=$(enrich_append $has_deletions $omg_has_deletions_symbol "${red_on_white}")
         
 
         # ready
@@ -95,8 +96,8 @@ function custom_build_prompt {
         if [[ $has_diverged == true || $commits_behind -gt 0 ]]; then
             local should_sync=true
         fi
-        prompt+=$(enrich_append $ready_to_commit $omg_ready_to_commit_symbol "%K{white}%F{red}")
-        prompt+=$(enrich_append $should_sync ${omg_should_sync_symbol} "%K{white}%F{red}")
+        prompt+=$(enrich_append $ready_to_commit $omg_ready_to_commit_symbol "${red_on_white}")
+        prompt+=$(enrich_append $should_sync ${omg_should_sync_symbol} "${red_on_white}")
 
         # where
 
