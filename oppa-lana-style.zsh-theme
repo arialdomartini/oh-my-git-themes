@@ -21,21 +21,6 @@
 : ${omg_has_stashes_symbol:=''}
 
 
-
-# Flags
-omg_default_color_on="%K{white}%F{black}"
-reset='%{$reset_color%}'
-
-CC_CURRENT_PATH="~"
-CC_CURRENT_USERNAME="%n"
-CC_CURRENT_HOSTNAME="%m"
-CC_TIME_AND_DATE="%D{%H:%M:%S} $CC_SYMBOL_CALENDAR %D{%Y-%m-%d}"
-
-reset="%{\e[0m%}"
-
-#colors
-autoload -U colors && colors
-
 PROMPT='$(build_prompt)'
 RPROMPT='%{$reset_color%}%T %{$fg_bold[white]%} %n@%m%{$reset_color%}'
 
@@ -76,10 +61,27 @@ function custom_build_prompt {
     local prompt=""
     local original_prompt=$PS1
 
+
+    local black_on_white="%K{white}%F{black}"
+
+    # Flags
+    local omg_default_color_on="${black_on_white}"
+    local reset='%{$reset_color%}'
+
+    local CC_CURRENT_PATH="~"
+    local CC_CURRENT_USERNAME="%n"
+    local CC_CURRENT_HOSTNAME="%m"
+    local CC_TIME_AND_DATE="%D{%H:%M:%S} $CC_SYMBOL_CALENDAR %D{%Y-%m-%d}"
+
+    local reset="%{\e[0m%}"
+
+    #colors
+    autoload -U colors && colors
+    
     if [[ $is_a_git_repo == true ]]; then
         # on filesystem
-        prompt="%K{white}%F{black} "
-        prompt+=$(enrich_append $is_a_git_repo $omg_is_a_git_repo_symbol "%K{white}%F{black}")
+        prompt="${black_on_white} "
+        prompt+=$(enrich_append $is_a_git_repo $omg_is_a_git_repo_symbol "${black_on_white}")
         prompt+=$(enrich_append $has_stashes $omg_has_stashes_symbol "%K{white}%F{yellow}")
 
         prompt+=$(enrich_append $has_untracked_files $omg_has_untracked_files_symbol "%K{white}%F{red}")
@@ -88,9 +90,9 @@ function custom_build_prompt {
         
 
         # ready
-        prompt+=$(enrich_append $has_adds $omg_has_adds_symbol "%K{white}%F{black}")
-        prompt+=$(enrich_append $has_modifications_cached $omg_has_cached_modifications_symbol "%K{white}%F{black}")
-        prompt+=$(enrich_append $has_deletions_cached $omg_has_cached_deletions_symbol "%K{white}%F{black}")
+        prompt+=$(enrich_append $has_adds $omg_has_adds_symbol "${black_on_white}")
+        prompt+=$(enrich_append $has_modifications_cached $omg_has_cached_modifications_symbol "${black_on_white}")
+        prompt+=$(enrich_append $has_deletions_cached $omg_has_cached_deletions_symbol "${black_on_white}")
         
         # next operation
 
