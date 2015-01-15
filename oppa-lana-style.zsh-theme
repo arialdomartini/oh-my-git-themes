@@ -68,7 +68,8 @@ function custom_build_prompt {
     local red_on_white="%K{white}%F{red}"
     local black_on_red="%K{red}%F{black}"
     local white_on_red="%K{red}%F{white}"
-
+    local yellow_on_red="%K{red}%F{yellow}"
+ 
     # Flags
     local omg_default_color_on="${black_on_white}"
 
@@ -131,7 +132,7 @@ function custom_build_prompt {
                 prompt+=$(enrich_append true "(${current_branch} ${type_of_upstream} ${upstream//\/$current_branch/})" "${black_on_red}")
             fi
         fi
-        prompt+=$(enrich_append ${is_on_a_tag} ${omg_is_on_a_tag_symbol} "%K{red}%F{yellow}")
+        prompt+=$(enrich_append ${is_on_a_tag} ${omg_is_on_a_tag_symbol} "${yellow_on_red}")
         prompt+="%F{red}%K{black}%k%f
 ${current_path} • "
     else
