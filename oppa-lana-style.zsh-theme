@@ -20,6 +20,7 @@
 : ${omg_should_push_symbol:=''}                #    
 : ${omg_has_stashes_symbol:=''}
 
+autoload -U colors && colors
 
 PROMPT='$(build_prompt)'
 RPROMPT='%{$reset_color%}%T %{$fg_bold[white]%} %n@%m%{$reset_color%}'
@@ -75,9 +76,6 @@ function custom_build_prompt {
 
     local reset="%{\e[0m%}"
 
-    #colors
-    autoload -U colors && colors
-    
     if [[ $is_a_git_repo == true ]]; then
         # on filesystem
         prompt="${black_on_white} "
