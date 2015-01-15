@@ -8,7 +8,7 @@
 : ${omg_has_modifications_symbol:=''}
 : ${omg_has_cached_modifications_symbol:=''}
 : ${omg_ready_to_commit_symbol:=''}            #   →
-: ${omg_is_on_a_tag_symbol:=''}
+: ${omg_is_on_a_tag_symbol:=''}                #   
 : ${omg_needs_to_merge_symbol:='ᄉ'}
 : ${omg_detached_symbol:=''}
 : ${omg_can_fast_forward_symbol:=''}
@@ -103,7 +103,7 @@ function custom_build_prompt {
 
         prompt="${prompt} %F{white}%K{red} ${black_on_red}"
         if [[ $detached == true ]]; then
-            prompt+=$(enrich_append $detached $omg_detached_symbol "${black_on_red}")
+            prompt+=$(enrich_append $detached $omg_detached_symbol "${white_on_red}")
             prompt+=$(enrich_append $detached "(${current_commit_hash:0:7})" "${white_on_red}")
         else            
             if [[ $has_upstream == false ]]; then
@@ -132,7 +132,7 @@ function custom_build_prompt {
                 prompt+=$(enrich_append true "(${current_branch} ${type_of_upstream} ${upstream//\/$current_branch/})" "${black_on_red}")
             fi
         fi
-        prompt+=$(enrich_append ${is_on_a_tag} ${omg_is_on_a_tag_symbol} "${yellow_on_red}")
+        prompt+=$(enrich_append ${is_on_a_tag} "${omg_is_on_a_tag_symbol} ${tag_at_current_commit}" "${black_on_red}")
         prompt+="%F{red}%K{black}%k%f
 ${current_path} • "
     else
