@@ -64,6 +64,7 @@ function custom_build_prompt {
 
 
     local black_on_white="%K{white}%F{black}"
+    local yellow_on_white="%K{white}%F{yellow}"
 
     # Flags
     local omg_default_color_on="${black_on_white}"
@@ -77,7 +78,7 @@ function custom_build_prompt {
         # on filesystem
         prompt="${black_on_white} "
         prompt+=$(enrich_append $is_a_git_repo $omg_is_a_git_repo_symbol "${black_on_white}")
-        prompt+=$(enrich_append $has_stashes $omg_has_stashes_symbol "%K{white}%F{yellow}")
+        prompt+=$(enrich_append $has_stashes $omg_has_stashes_symbol "${yellow_on_white}")
 
         prompt+=$(enrich_append $has_untracked_files $omg_has_untracked_files_symbol "%K{white}%F{red}")
         prompt+=$(enrich_append $has_modifications $omg_has_modifications_symbol "%K{white}%F{red}")
