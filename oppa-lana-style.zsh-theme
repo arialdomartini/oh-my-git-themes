@@ -14,7 +14,6 @@
 : ${omg_can_fast_forward_symbol:=''}
 : ${omg_has_diverged_symbol:=''}               #   
 : ${omg_not_tracked_branch_symbol:=''}
-: ${omg_should_sync_symbol:=''}                #     
 : ${omg_rebase_tracking_branch_symbol:=''}     #   
 : ${omg_merge_tracking_branch_symbol:=''}      #  
 : ${omg_should_push_symbol:=''}                #    
@@ -94,18 +93,14 @@ function custom_build_prompt {
         
         # next operation
 
-        if [[ $has_diverged == true || $commits_behind -gt 0 ]]; then
-            local should_sync=true
-        fi
         prompt+=$(enrich_append $ready_to_commit $omg_ready_to_commit_symbol "${red_on_white}")
-        prompt+=$(enrich_append $should_sync ${omg_should_sync_symbol} "${red_on_white}")
 
         # where
 
         prompt="${prompt} ${white_on_red} ${black_on_red}"
         if [[ $detached == true ]]; then
             prompt+=$(enrich_append $detached $omg_detached_symbol "${white_on_red}")
-            prompt+=$(enrich_append $detached "(${current_commit_hash:0:7})" "${white_on_red}")
+            prompt+=$(enrich_append $detached "(${current_commit_hash:0:7})" "${black_on_red}")
         else            
             if [[ $has_upstream == false ]]; then
                 prompt+=$(enrich_append true "-- ${omg_not_tracked_branch_symbol}  --  (${current_branch})" "${black_on_red}")
@@ -120,10 +115,10 @@ function custom_build_prompt {
                     prompt+=$(enrich_append true "-${commits_behind} ${omg_has_diverged_symbol} +${commits_ahead}" "${white_on_red}")
                 else
                     if [[ $commits_behind -gt 0 ]]; then
-                        prompt+=$(enrich_append true "-${commits_behind} ${omg_can_fast_forward_symbol} --" "${black_on_red}")
+                        prompt+=$(enrich_append true "-${commits_behind} %F{white}${omg_can_fast_forward_symbol}%F{black} --" "${black_on_red}")
                     fi
                     if [[ $commits_ahead -gt 0 ]]; then
-                        prompt+=$(enrich_append true "-- ${omg_should_push_symbol}  +${commits_ahead}" "${black_on_red}")
+                        prompt+=$(enrich_append true "-- %F{white}${omg_should_push_symbol}%F{black}  +${commits_ahead}" "${black_on_red}")
                     fi
                     if [[ $commits_ahead == 0 && $commits_behind == 0 ]]; then
                          prompt+=$(enrich_append true " --   -- " "${black_on_red}")
