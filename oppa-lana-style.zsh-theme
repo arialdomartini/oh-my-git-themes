@@ -18,6 +18,7 @@
 : ${omg_merge_tracking_branch_symbol:=''}      #  
 : ${omg_should_push_symbol:=''}                #    
 : ${omg_has_stashes_symbol:=''}
+: ${omg_has_action_in_progress_symbol:=''}
 
 autoload -U colors && colors
 
@@ -57,6 +58,7 @@ function custom_build_prompt {
     local should_push=${21}
     local will_rebase=${22}
     local has_stashes=${23}
+    local action=${24}
 
     local prompt=""
     local original_prompt=$PS1
@@ -94,6 +96,7 @@ function custom_build_prompt {
         # next operation
 
         prompt+=$(enrich_append $ready_to_commit $omg_ready_to_commit_symbol "${red_on_white}")
+        prompt+=$(enrich_append $action "${omg_has_action_in_progress_symbol} $action" "${red_on_white}")
 
         # where
 
