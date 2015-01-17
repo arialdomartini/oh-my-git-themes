@@ -18,7 +18,7 @@
 : ${omg_merge_tracking_branch_symbol:=''}      #  
 : ${omg_should_push_symbol:=''}                #    
 : ${omg_has_stashes_symbol:=''}
-: ${omg_has_action_in_progress_symbol:=''}
+: ${omg_has_action_in_progress_symbol:=''}     #                  
 
 autoload -U colors && colors
 
