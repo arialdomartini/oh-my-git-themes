@@ -1,5 +1,5 @@
 : ${omg_ungit_prompt:=$PS1}
-
+: ${omg_second_line:="%~ • "}
 : ${omg_is_a_git_repo_symbol:=''}
 : ${omg_has_untracked_files_symbol:=''}        #                ?    
 : ${omg_has_adds_symbol:=''}
@@ -133,7 +133,7 @@ function custom_build_prompt {
         fi
         prompt+=$(enrich_append ${is_on_a_tag} "${omg_is_on_a_tag_symbol} ${tag_at_current_commit}" "${black_on_red}")
         prompt+="%k%F{red}%k%f
-${current_path} • "
+${omg_second_line}"
     else
         prompt="${omg_ungit_prompt}"
     fi
