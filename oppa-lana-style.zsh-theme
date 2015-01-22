@@ -135,22 +135,12 @@ function custom_build_prompt {
         fi
         prompt+=$(enrich_append ${is_on_a_tag} "${omg_is_on_a_tag_symbol} ${tag_at_current_commit}" "${black_on_red}")
         prompt+="%k%F{red}%k%f\n"
-        prompt+="$(eval_second_line_if_present)"
+        prompt+="$(eval_prompt_callback_if_present)"
         prompt+="${omg_second_line}"
     else
-        prompt+="$(eval_second_line_if_present)"
+        prompt+="$(eval_prompt_callback_if_present)"
         prompt+="${omg_ungit_prompt}"
     fi
  
     echo "${prompt}"
 }
-
-function_exists() {
-    declare -f -F $1 > /dev/null
-    return $?
-}
-
-function eval_second_line_if_present {
-        function_exists omg_prompt_callback && echo "$(omg_prompt_callback)"
-}
-
