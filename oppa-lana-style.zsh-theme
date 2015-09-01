@@ -1,7 +1,7 @@
 : ${omg_ungit_prompt:=$PS1}
-: ${omg_second_line:="%~ • "}
-: ${omg_is_a_git_repo_symbol:=''}
-: ${omg_has_untracked_files_symbol:=''}        #                ?    
+: ${omg_second_line:="%c • "}
+: ${omg_is_a_git_repo_symbol:=''}
+: ${omg_has_untracked_files_symbol:=''}        #                ?    
 : ${omg_has_adds_symbol:=''}
 : ${omg_has_deletions_symbol:=''}
 : ${omg_has_cached_deletions_symbol:=''}
@@ -19,6 +19,7 @@
 : ${omg_should_push_symbol:=''}                #    
 : ${omg_has_stashes_symbol:=''}
 : ${omg_has_action_in_progress_symbol:=''}     #                  
+: ${omg_theme_color:=green}
 
 autoload -U colors && colors
 
@@ -66,11 +67,11 @@ function custom_build_prompt {
 
     local black_on_white="%K{white}%F{black}"
     local yellow_on_white="%K{white}%F{yellow}"
-    local red_on_white="%K{white}%F{red}"
-    local red_on_black="%K{black}%F{red}"
-    local black_on_red="%K{red}%F{black}"
-    local white_on_red="%K{red}%F{white}"
-    local yellow_on_red="%K{red}%F{yellow}"
+    local omg_theme_color_on_white="%K{white}%F{${omg_theme_color}}"
+    local omg_theme_color_on_black="%K{black}%F{${omg_theme_color}}"
+    local black_on_omg_theme_color="%K{${omg_theme_color}}%F{black}"
+    local white_on_omg_theme_color="%K{${omg_theme_color}}%F{white}"
+    local yellow_on_omg_theme_color="%K{${omg_theme_color}}%F{yellow}"
  
     # Flags
     local omg_default_color_on="${black_on_white}"
@@ -83,9 +84,9 @@ function custom_build_prompt {
         prompt+=$(enrich_append $is_a_git_repo $omg_is_a_git_repo_symbol "${black_on_white}")
         prompt+=$(enrich_append $has_stashes $omg_has_stashes_symbol "${yellow_on_white}")
 
-        prompt+=$(enrich_append $has_untracked_files $omg_has_untracked_files_symbol "${red_on_white}")
-        prompt+=$(enrich_append $has_modifications $omg_has_modifications_symbol "${red_on_white}")
-        prompt+=$(enrich_append $has_deletions $omg_has_deletions_symbol "${red_on_white}")
+        prompt+=$(enrich_append $has_untracked_files $omg_has_untracked_files_symbol "${omg_theme_color_on_white}")
+        prompt+=$(enrich_append $has_modifications $omg_has_modifications_symbol "${omg_theme_color_on_white}")
+        prompt+=$(enrich_append $has_deletions $omg_has_deletions_symbol "${omg_theme_color_on_white}")
         
 
         # ready
@@ -95,18 +96,18 @@ function custom_build_prompt {
         
         # next operation
 
-        prompt+=$(enrich_append $ready_to_commit $omg_ready_to_commit_symbol "${red_on_white}")
-        prompt+=$(enrich_append $action "${omg_has_action_in_progress_symbol} $action" "${red_on_white}")
+        prompt+=$(enrich_append $ready_to_commit $omg_ready_to_commit_symbol "${omg_theme_color_on_white}")
+        prompt+=$(enrich_append $action "${omg_has_action_in_progress_symbol} $action" "${omg_theme_color_on_white}")
 
         # where
 
-        prompt="${prompt} ${white_on_red} ${black_on_red}"
+        prompt="${prompt} ${white_on_omg_theme_color} ${black_on_omg_theme_color}"
         if [[ $detached == true ]]; then
-            prompt+=$(enrich_append $detached $omg_detached_symbol "${white_on_red}")
-            prompt+=$(enrich_append $detached "(${current_commit_hash:0:7})" "${black_on_red}")
+            prompt+=$(enrich_append $detached $omg_detached_symbol "${white_on_omg_theme_color}")
+            prompt+=$(enrich_append $detached "(${current_commit_hash:0:7})" "${black_on_omg_theme_color}")
         else            
             if [[ $has_upstream == false ]]; then
-                prompt+=$(enrich_append true "-- ${omg_not_tracked_branch_symbol}  --  (${current_branch})" "${black_on_red}")
+                prompt+=$(enrich_append true "-- ${omg_not_tracked_branch_symbol}  --  (${current_branch})" "${black_on_omg_theme_color}")
             else
                 if [[ $will_rebase == true ]]; then
                     local type_of_upstream=$omg_rebase_tracking_branch_symbol
@@ -115,27 +116,27 @@ function custom_build_prompt {
                 fi
 
                 if [[ $has_diverged == true ]]; then
-                    prompt+=$(enrich_append true "-${commits_behind} ${omg_has_diverged_symbol} +${commits_ahead}" "${white_on_red}")
+                    prompt+=$(enrich_append true "-${commits_behind} ${omg_has_diverged_symbol} +${commits_ahead}" "${white_on_omg_theme_color}")
                 else
                     if [[ $commits_behind -gt 0 ]]; then
-                        prompt+=$(enrich_append true "-${commits_behind} %F{white}${omg_can_fast_forward_symbol}%F{black} --" "${black_on_red}")
+                        prompt+=$(enrich_append true "-${commits_behind} %F{white}${omg_can_fast_forward_symbol}%F{black} --" "${black_on_omg_theme_color}")
                     fi
                     if [[ $commits_ahead -gt 0 ]]; then
-                        prompt+=$(enrich_append true "-- %F{white}${omg_should_push_symbol}%F{black}  +${commits_ahead}" "${black_on_red}")
+                        prompt+=$(enrich_append true "-- %F{white}${omg_should_push_symbol}%F{black}  +${commits_ahead}" "${black_on_omg_theme_color}")
                     fi
                     if [[ $commits_ahead == 0 && $commits_behind == 0 ]]; then
-                         prompt+=$(enrich_append true " --   -- " "${black_on_red}")
+                         prompt+=$(enrich_append true " --   -- " "${black_on_omg_theme_color}")
                     fi
                     
                 fi
-                prompt+=$(enrich_append true "(${current_branch} ${type_of_upstream} ${upstream//\/$current_branch/})" "${black_on_red}")
+                prompt+=$(enrich_append true "(${current_branch} ${type_of_upstream} ${upstream//\/$current_branch/})" "${black_on_omg_theme_color}")
             fi
         fi
-        prompt+=$(enrich_append ${is_on_a_tag} "${omg_is_on_a_tag_symbol} ${tag_at_current_commit}" "${black_on_red}")
-        prompt+="%k%F{red}%k%f
-${omg_second_line}"
+        prompt+=$(enrich_append ${is_on_a_tag} "${omg_is_on_a_tag_symbol} ${tag_at_current_commit}" "${black_on_omg_theme_color}")
+        prompt+="%k%f${omg_theme_color_on_black}%k%f
+${omg_theme_color_on_black}${omg_second_line}"
     else
-        prompt="${omg_ungit_prompt}"
+        prompt="${omg_theme_color_on_black}${omg_ungit_prompt}%{$reset_color%}"
     fi
  
     echo "${prompt}"
